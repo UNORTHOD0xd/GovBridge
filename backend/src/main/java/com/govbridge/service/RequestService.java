@@ -77,8 +77,8 @@ public class RequestService {
             request.getCitizenId(), OffsetDateTime.now()
         );
         String docHash = sha256Hex(content);
-        String ninHash = "0x" + request.getCitizenId().toString().replace("-", "")
-            .substring(0, 64);
+        String cleanId = request.getCitizenId().toString().replace("-", "");
+        String ninHash = sha256Hex(cleanId);
 
         try {
             String txHash = chainService.anchorDocument(
