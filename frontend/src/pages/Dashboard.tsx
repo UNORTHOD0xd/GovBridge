@@ -41,7 +41,7 @@ export default function Dashboard() {
 
   return (
     <Layout connected={connected}>
-      <section className="mb-10">
+      <section className="mb-10 animate-fade-in">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Request a Service</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {SERVICES.map((s) => (
@@ -57,9 +57,13 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {requests.length > 0 && (
-        <section>
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Your Requests</h2>
+      <section className="animate-slide-up">
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">Your Requests</h2>
+        {requests.length === 0 ? (
+          <div className="bg-white rounded-xl border border-dashed border-gray-300 p-8 text-center">
+            <p className="text-gray-400 text-sm">No requests yet. Select a service above to get started.</p>
+          </div>
+        ) : (
           <div className="space-y-3">
             {requests.map((r) => {
               const liveStatus = latestStatus(r.id) || r.status;
@@ -94,8 +98,8 @@ export default function Dashboard() {
               );
             })}
           </div>
-        </section>
-      )}
+        )}
+      </section>
     </Layout>
   );
 }

@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useAuth } from "../App";
 import { api } from "../lib/api";
 import { explorerTxUrl } from "../lib/contracts";
+import DocumentBadge from "../components/DocumentBadge";
 
 const SERVICE_LABELS: Record<string, string> = {
   tax_compliance: "Tax Compliance Certificate",
@@ -107,7 +108,12 @@ export default function Payment() {
           </button>
         ) : (
           <div className="space-y-4">
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center animate-fade-in">
+              <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
               <span className="text-green-600 font-bold text-lg">Payment Confirmed</span>
               <p className="text-sm text-gray-600 mt-2">
                 Remaining balance: J$ {result.remainingBalance.toLocaleString()}
@@ -121,24 +127,19 @@ export default function Payment() {
             )}
 
             {result.txHash && (
-              <a
-                href={explorerTxUrl(result.txHash)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center text-sm text-green-600 hover:underline"
-              >
-                View on Base Sepolia Explorer
-              </a>
+              <div className="flex justify-center">
+                <DocumentBadge txHash={result.txHash} />
+              </div>
             )}
 
-            {processing && (
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+            {processing ? (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 animate-fade-in">
                 <p className="text-sm font-medium text-blue-800 mb-3">Processing request...</p>
                 <div className="flex gap-2">
                   {STEPS.map((step, i) => (
                     <div
                       key={step}
-                      className={`flex-1 text-center text-xs py-2 rounded ${
+                      className={`flex-1 text-center text-xs py-2 rounded transition-all duration-500 ${
                         processStep > i
                           ? "bg-green-500 text-white"
                           : processStep === i + 1
@@ -150,6 +151,10 @@ export default function Payment() {
                     </div>
                   ))}
                 </div>
+              </div>
+            ) : processStep === 3 && (
+              <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-center animate-slide-up">
+                <p className="text-green-700 font-semibold">Document issued and anchored on-chain</p>
               </div>
             )}
 

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState, createContext, useContext, type ReactNode } from "react";
+import ErrorBoundary from "./components/ErrorBoundary";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Payment from "./pages/Payment";
@@ -40,6 +41,7 @@ export default function App() {
   const [citizen, setCitizen] = useState<Citizen | null>(null);
 
   return (
+    <ErrorBoundary>
     <AuthContext.Provider value={{ citizen, setCitizen }}>
       <BrowserRouter>
         <Routes>
@@ -61,5 +63,6 @@ export default function App() {
         </Routes>
       </BrowserRouter>
     </AuthContext.Provider>
+    </ErrorBoundary>
   );
 }
