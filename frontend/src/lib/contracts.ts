@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 export const BASE_SEPOLIA = {
   chainId: 84532,
-  rpcUrl: "https://sepolia.base.org",
+  rpcUrl: "https://base-sepolia.infura.io/v3/935a9f7050ae4a26aeaa9077407991c3",
   explorer: "https://sepolia.basescan.org",
 };
 
