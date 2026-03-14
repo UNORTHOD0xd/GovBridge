@@ -61,9 +61,9 @@ CREATE TABLE documents (
 CREATE INDEX idx_documents_hash ON documents(doc_hash);
 
 -- Seed demo citizens
--- NIN hashes are SHA-256 of the raw NIN string
+-- NIN hashes are pre-computed SHA-256 of the raw NIN string
 INSERT INTO citizens (nin_hash, name, parish, date_of_birth, jamdex_balance, verified) VALUES
-    ('0x' || encode(digest('100100100A', 'sha256'), 'hex'), 'Marcus Thompson',  'Kingston',     '1990-03-15', 25000, true),
-    ('0x' || encode(digest('200200200B', 'sha256'), 'hex'), 'Keisha Williams',  'St. Andrew',   '1985-07-22', 42000, true),
-    ('0x' || encode(digest('300300300C', 'sha256'), 'hex'), 'Andre Campbell',   'Montego Bay',  '1992-11-08', 15500, true)
+    ('0x669af244344d36cb726c57b71d07807c43ce7894f1d51941d1d6bab00aa6fb58', 'Marcus Thompson',  'Kingston',     '1990-03-15', 25000, true),
+    ('0x3319c1feeac9b1d9d19da7ca1f9d6d96286248817823d4c06b93c58f2856496a', 'Keisha Williams',  'St. Andrew',   '1985-07-22', 42000, true),
+    ('0xa2e27d62f9b488f3b6957885fdba49dcb714fab2d319e805d136e6cc53f14f84', 'Andre Campbell',   'Montego Bay',  '1992-11-08', 15500, true)
 ON CONFLICT (nin_hash) DO NOTHING;
