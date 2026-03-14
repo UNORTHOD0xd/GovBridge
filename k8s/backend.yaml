@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govbridge-backend
+  namespace: govbridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: govbridge-backend
+  template:
+    metadata:
+      labels:
+        app: govbridge-backend
+    spec:
+      containers:
+        - name: backend
+          image: BACKEND_IMAGE_PLACEHOLDER
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: ""
+            - name: DB_NAME
+              value: "govbridge"
+            - name: DB_USERNAME
+              value: "govbridge_admin"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: govbridge-secrets
+                  key: db-password
+            - name: KAFKA_BROKERS
+              value: ""
+            - name: CHAIN_RPC_URL
+              value: "https://sepolia.base.org"
+            - name: DEPLOYER_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: govbridge-secrets
+                  key: deployer-private-key
+            - name: DOC_VERIFY_ADDRESS
+              value: ""
+            - name: PAYMENT_RECEIPT_ADDRESS
+              value: ""
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "1Gi"
+              cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: govbridge-backend
+  namespace: govbridge
+spec:
+  selector:
+    app: govbridge-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP

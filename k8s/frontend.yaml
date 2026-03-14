@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govbridge-frontend
+  namespace: govbridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: govbridge-frontend
+  template:
+    metadata:
+      labels:
+        app: govbridge-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: FRONTEND_IMAGE_PLACEHOLDER
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: govbridge-frontend
+  namespace: govbridge
+spec:
+  selector:
+    app: govbridge-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP
