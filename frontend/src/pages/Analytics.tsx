@@ -33,19 +33,19 @@ export default function Analytics() {
 
   return (
     <Layout title="Analytics">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <MetricCard label="Total Documents" value={data.totalDocuments} />
         <MetricCard label="Total Payments" value={data.totalPayments} />
         <MetricCard label="Avg Processing" value={`${data.avgProcessingMinutes} min`} />
         <MetricCard label="Jam-Dex Volume" value={`J$ ${Number(data.totalVolume).toLocaleString()}`} />
       </div>
 
-      <section className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
+      <section className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 mb-6 sm:mb-8 overflow-x-auto">
         <h2 className="font-semibold text-gray-900 mb-4">Service Volume by Parish</h2>
         <JamaicaMap data={parishData} />
       </section>
 
-      <section className="bg-white rounded-xl border border-gray-200 p-6">
+      <section className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
         <h2 className="font-semibold text-gray-900 mb-4">Requests by Agency</h2>
         <div className="space-y-3">
           {agencies.map(([agency, count]) => (
@@ -70,9 +70,9 @@ export default function Analytics() {
 
 function MetricCard({ label, value }: { label: string; value: string | number }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6">
-      <p className="text-sm text-gray-500">{label}</p>
-      <p className="text-2xl font-bold text-gray-900 mt-1">{value}</p>
+    <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+      <p className="text-xs sm:text-sm text-gray-500">{label}</p>
+      <p className="text-lg sm:text-2xl font-bold text-gray-900 mt-1 truncate">{value}</p>
     </div>
   );
 }

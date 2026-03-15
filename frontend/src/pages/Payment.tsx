@@ -67,7 +67,7 @@ export default function Payment() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-lg w-full max-w-lg p-8">
+      <div className="bg-white rounded-2xl shadow-lg w-full max-w-lg p-5 sm:p-8">
         <Link to="/dashboard" className="text-sm text-green-600 hover:underline mb-6 inline-block">
           &larr; Back to dashboard
         </Link>

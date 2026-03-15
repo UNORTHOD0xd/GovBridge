@@ -43,7 +43,7 @@ export default function Dashboard() {
     <Layout connected={connected}>
       <section className="mb-10 animate-fade-in">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Request a Service</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
           {SERVICES.map((s) => (
             <ServiceCard
               key={s.type}
@@ -68,26 +68,26 @@ export default function Dashboard() {
             {requests.map((r) => {
               const liveStatus = latestStatus(r.id) || r.status;
               return (
-                <div key={r.id} className="bg-white rounded-xl border border-gray-200 p-5">
-                  <div className="flex items-center justify-between mb-3">
+                <div key={r.id} className="bg-white rounded-xl border border-gray-200 p-3 sm:p-5">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-3">
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-gray-900 text-sm sm:text-base">
                         {r.serviceType.replace("_", " ")}
-                        <span className="text-gray-400 text-sm ml-2">{r.agency}</span>
+                        <span className="text-gray-400 text-xs sm:text-sm ml-2">{r.agency}</span>
                       </p>
                       <span className="text-xs text-gray-400">
                         J$ {r.feeAmount.toLocaleString()}
                       </span>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                       {r.docHash && liveStatus === "issued" && (
                         <a
                           href={api.getCertificateUrl(r.docHash)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-medium hover:bg-blue-100 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-2 sm:px-2.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-medium hover:bg-blue-100 transition-colors"
                         >
-                          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
                           PDF

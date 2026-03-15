@@ -49,11 +49,11 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-yellow-900 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
-        <div className="text-center mb-8">
-          <img src="/coat-of-arms.svg" alt="Jamaica Coat of Arms" className="w-20 h-20 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900">GovBridge</h1>
-          <p className="text-gray-500 mt-1">Unified Jamaica Government Services</p>
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-5 sm:p-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <img src="/coat-of-arms.svg" alt="Jamaica Coat of Arms" className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4" />
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">GovBridge</h1>
+          <p className="text-gray-500 text-sm sm:text-base mt-1">Unified Jamaica Government Services</p>
         </div>
 
         {!verified ? (
@@ -67,7 +67,7 @@ export default function Login() {
               value={nin}
               onChange={(e) => setNin(e.target.value.replace(/\D/g, ""))}
               placeholder="Enter your 9-digit NIN"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-lg tracking-widest font-mono"
+              className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 text-base sm:text-lg tracking-wider sm:tracking-widest font-mono"
               onKeyDown={(e) => e.key === "Enter" && handleVerify()}
             />
             {error && <p className="text-red-600 text-sm mt-2">{error}</p>}

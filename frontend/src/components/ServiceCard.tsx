@@ -11,7 +11,7 @@ export default function ServiceCard({ label, agency, fee, loading, onClick }: Se
     <button
       onClick={onClick}
       disabled={loading}
-      className="bg-white rounded-xl border border-gray-200 p-6 text-left hover:border-green-400 hover:shadow-md transition-all disabled:opacity-50"
+      className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6 text-left hover:border-green-400 hover:shadow-md transition-all disabled:opacity-50"
     >
       <p className="font-semibold text-gray-900">{label}</p>
       <p className="text-sm text-gray-500 mt-1">{agency}</p>

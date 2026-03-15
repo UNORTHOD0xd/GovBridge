@@ -24,11 +24,11 @@ export default function Verification() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-yellow-900 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8">
-        <div className="text-center mb-8">
-          <img src="/coat-of-arms.svg" alt="Jamaica Coat of Arms" className="w-20 h-20 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900">Document Verification</h1>
-          <p className="text-gray-500 mt-1">Verify any GovBridge document on-chain</p>
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-5 sm:p-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <img src="/coat-of-arms.svg" alt="Jamaica Coat of Arms" className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 sm:mb-4" />
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Document Verification</h1>
+          <p className="text-gray-500 text-sm sm:text-base mt-1">Verify any GovBridge document on-chain</p>
         </div>
 
         <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -39,7 +39,7 @@ export default function Verification() {
           value={docHash}
           onChange={(e) => setDocHash(e.target.value)}
           placeholder="0x..."
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 font-mono text-sm"
+          className="w-full px-3 sm:px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 font-mono text-xs sm:text-sm"
           onKeyDown={(e) => e.key === "Enter" && handleVerify()}
         />
 
