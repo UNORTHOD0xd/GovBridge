@@ -39,4 +39,8 @@ export const api = {
     request<any>(`/api/payments/${requestId}`, { method: "POST" }),
 
   getAnalytics: () => request<any>("/api/analytics/summary"),
+
+  getAnalyticsByParish: () => request<Record<string, number>>("/api/analytics/by-parish"),
+
+  getCertificateUrl: (docHash: string) => `${BASE}/api/documents/${docHash}/pdf`,
 };

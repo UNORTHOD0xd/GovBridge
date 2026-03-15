@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { api } from "../lib/api";
 import Layout from "../components/Layout";
+import JamaicaMap from "../components/JamaicaMap";
 
 export default function Analytics() {
   const [data, setData] = useState<any>(null);
+  const [parishData, setParishData] = useState<Record<string, number>>({});
 
   useEffect(() => {
     api.getAnalytics().then(setData).catch(() => {
@@ -15,6 +17,7 @@ export default function Analytics() {
         byAgency: {},
       });
     });
+    api.getAnalyticsByParish().then(setParishData).catch(() => {});
   }, []);
 
   if (!data) {
@@ -36,6 +39,11 @@ export default function Analytics() {
         <MetricCard label="Avg Processing" value={`${data.avgProcessingMinutes} min`} />
         <MetricCard label="Jam-Dex Volume" value={`J$ ${Number(data.totalVolume).toLocaleString()}`} />
       </div>
+
+      <section className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
+        <h2 className="font-semibold text-gray-900 mb-4">Service Volume by Parish</h2>
+        <JamaicaMap data={parishData} />
+      </section>
 
       <section className="bg-white rounded-xl border border-gray-200 p-6">
         <h2 className="font-semibold text-gray-900 mb-4">Requests by Agency</h2>
