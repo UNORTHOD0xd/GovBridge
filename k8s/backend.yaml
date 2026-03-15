@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
         - name: backend
-          image: BACKEND_IMAGE_PLACEHOLDER
+          image: 290373175461.dkr.ecr.us-east-2.amazonaws.com/govbridge-backend:latest
           ports:
             - containerPort: 8080
           env:
             - name: DB_HOST
-              value: ""
+              value: "govbridge-db.ch2i4wo48ol1.us-east-2.rds.amazonaws.com"
             - name: DB_NAME
               value: "govbridge"
             - name: DB_USERNAME
@@ -31,23 +31,23 @@ spec:
                   name: govbridge-secrets
                   key: db-password
             - name: KAFKA_BROKERS
-              value: ""
+              value: "localhost:9092"
             - name: CHAIN_RPC_URL
-              value: "https://sepolia.base.org"
+              value: "https://base-sepolia.infura.io/v3/935a9f7050ae4a26aeaa9077407991c3"
             - name: DEPLOYER_PRIVATE_KEY
               valueFrom:
                 secretKeyRef:
                   name: govbridge-secrets
                   key: deployer-private-key
             - name: DOC_VERIFY_ADDRESS
-              value: ""
+              value: "0x9Cefaa1c05d4af7cB499a93B9d958B91a0eFEa88"
             - name: PAYMENT_RECEIPT_ADDRESS
-              value: ""
+              value: "0x80051165044a88e6eBa0CEba574e792BF6de0DAB"
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8080
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
           resources:
             requests:
