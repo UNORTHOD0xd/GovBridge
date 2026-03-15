@@ -26,9 +26,7 @@ export default function Verification() {
     <div className="min-h-screen bg-gradient-to-br from-green-900 via-green-800 to-yellow-900 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-white text-2xl font-bold">GB</span>
-          </div>
+          <img src="/coat-of-arms.svg" alt="Jamaica Coat of Arms" className="w-20 h-20 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900">Document Verification</h1>
           <p className="text-gray-500 mt-1">Verify any GovBridge document on-chain</p>
         </div>

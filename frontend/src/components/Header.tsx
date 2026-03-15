@@ -14,9 +14,7 @@ export default function Header({ citizen, connected, onLogout, title }: HeaderPr
       <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Link to="/dashboard" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">GB</span>
-            </div>
+            <img src="/coat-of-arms.svg" alt="Jamaica Coat of Arms" className="w-10 h-10" />
             <div>
               <h1 className="font-bold text-gray-900">{title || "GovBridge"}</h1>
               {citizen && (
