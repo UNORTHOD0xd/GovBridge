@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Payment from "./pages/Payment";
 import Verification from "./pages/Verification";
 import Analytics from "./pages/Analytics";
+import About from "./pages/About";
 
 export interface Citizen {
   id: string;
@@ -46,6 +47,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
           <Route path="/verify" element={<Verification />} />
           <Route
             path="/dashboard"
