@@ -30,10 +30,6 @@ function getColor(value: number, max: number): string {
   return "#86efac";
 }
 
-function getTextColor(value: number, max: number): string {
-  const ratio = max === 0 ? 0 : value / max;
-  return ratio > 0.5 ? "#ffffff" : "#166534";
-}
 
 export default function JamaicaMap({ data }: JamaicaMapProps) {
   const [hovered, setHovered] = useState<string | null>(null);

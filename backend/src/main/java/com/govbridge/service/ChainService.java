@@ -34,9 +34,15 @@ public class ChainService {
         @Value("${govbridge.chain.payment-receipt-address:}") String paymentReceiptAddr
     ) {
         this.web3j = Web3j.build(new HttpService(rpcUrl));
-        this.credentials = (privateKey != null && !privateKey.isBlank())
-            ? Credentials.create(privateKey)
-            : null;
+        Credentials creds = null;
+        if (privateKey != null && !privateKey.isBlank() && !privateKey.equals("none")) {
+            try {
+                creds = Credentials.create(privateKey);
+            } catch (Exception e) {
+                // Invalid key — chain writes will be disabled
+            }
+        }
+        this.credentials = creds;
         this.docVerifyAddress = docVerifyAddr;
         this.paymentReceiptAddress = paymentReceiptAddr;
     }

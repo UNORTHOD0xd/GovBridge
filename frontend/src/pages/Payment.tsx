@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useAuth } from "../App";
 import { api } from "../lib/api";
-import { explorerTxUrl } from "../lib/contracts";
 import DocumentBadge from "../components/DocumentBadge";
 
 const SERVICE_LABELS: Record<string, string> = {

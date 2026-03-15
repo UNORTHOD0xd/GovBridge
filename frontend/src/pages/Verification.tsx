@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { verifyDocument, explorerTxUrl, BASE_SEPOLIA } from "../lib/contracts";
+import { verifyDocument, BASE_SEPOLIA } from "../lib/contracts";
 
 export default function Verification() {
   const [docHash, setDocHash] = useState("");
