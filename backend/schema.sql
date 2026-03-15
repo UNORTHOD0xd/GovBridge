@@ -4,6 +4,11 @@ CREATE TABLE citizens (
     name            VARCHAR(255) NOT NULL,
     parish          VARCHAR(100) NOT NULL,
     date_of_birth   DATE NOT NULL,
+    gender          VARCHAR(10),
+    trn             VARCHAR(9),
+    address         VARCHAR(255),
+    enrollment_date DATE,
+    card_expiry     DATE,
     jamdex_balance  BIGINT NOT NULL DEFAULT 0,
     verified        BOOLEAN NOT NULL DEFAULT FALSE,
     created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -62,8 +67,9 @@ CREATE INDEX idx_documents_hash ON documents(doc_hash);
 
 -- Seed demo citizens
 -- NIN hashes are pre-computed SHA-256 of the raw NIN string
-INSERT INTO citizens (nin_hash, name, parish, date_of_birth, jamdex_balance, verified) VALUES
-    ('0x669af244344d36cb726c57b71d07807c43ce7894f1d51941d1d6bab00aa6fb58', 'Marcus Thompson',  'Kingston',     '1990-03-15', 25000, true),
-    ('0x3319c1feeac9b1d9d19da7ca1f9d6d96286248817823d4c06b93c58f2856496a', 'Keisha Williams',  'St. Andrew',   '1985-07-22', 42000, true),
-    ('0xa2e27d62f9b488f3b6957885fdba49dcb714fab2d319e805d136e6cc53f14f84', 'Andre Campbell',   'Montego Bay',  '1992-11-08', 15500, true)
+-- NINs: 100100100, 100200200, 100300300
+INSERT INTO citizens (nin_hash, name, parish, date_of_birth, gender, trn, address, enrollment_date, card_expiry, jamdex_balance, verified) VALUES
+    ('0x95b4f55d1e9f5a0b5252a43e7b95e4df9e7777ec04e3e9d4ed7331d5e16fee85', 'Marcus Thompson',  'Kingston',     '1990-03-15', 'Male',   '100100100', '14 Hope Road, Kingston 6',            '2024-01-10', '2034-01-10', 25000, true),
+    ('0x0c6766cdb5db0cf7edb80a7d283f999e946070783c1ea94757af553596a1f9a9', 'Keisha Williams',  'St. Andrew',   '1985-07-22', 'Female', '100200200', '27 Constant Spring Road, St. Andrew', '2024-03-05', '2034-03-05', 42000, true),
+    ('0x0e8e80ba7d8a9702d21303e0565988ee68cc56ff7224c9520401929c68356d5b', 'Andre Campbell',   'St. James',    '1992-11-08', 'Male',   '100300300', '5 Gloucester Avenue, Montego Bay',    '2024-06-18', '2034-06-18', 15500, true)
 ON CONFLICT (nin_hash) DO NOTHING;

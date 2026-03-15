@@ -24,6 +24,21 @@ public class Citizen {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDate dateOfBirth;
 
+    @Column(length = 10)
+    private String gender;
+
+    @Column(length = 9)
+    private String trn;
+
+    @Column
+    private String address;
+
+    @Column(name = "enrollment_date")
+    private LocalDate enrollmentDate;
+
+    @Column(name = "card_expiry")
+    private LocalDate cardExpiry;
+
     @Column(name = "jamdex_balance", nullable = false)
     private Long jamdexBalance = 0L;
 
@@ -47,6 +62,21 @@ public class Citizen {
 
     public LocalDate getDateOfBirth() { return dateOfBirth; }
     public void setDateOfBirth(LocalDate dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+
+    public String getGender() { return gender; }
+    public void setGender(String gender) { this.gender = gender; }
+
+    public String getTrn() { return trn; }
+    public void setTrn(String trn) { this.trn = trn; }
+
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
+
+    public LocalDate getEnrollmentDate() { return enrollmentDate; }
+    public void setEnrollmentDate(LocalDate enrollmentDate) { this.enrollmentDate = enrollmentDate; }
+
+    public LocalDate getCardExpiry() { return cardExpiry; }
+    public void setCardExpiry(LocalDate cardExpiry) { this.cardExpiry = cardExpiry; }
 
     public Long getJamdexBalance() { return jamdexBalance; }
     public void setJamdexBalance(Long jamdexBalance) { this.jamdexBalance = jamdexBalance; }
